@@ -24,12 +24,14 @@ public class HttpPostTool {
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        System.out.println(url);
         client.setTimeout(CONNECTION_TIMEOUT_INT);
         client.addHeader("Referer", "http://sina.com.cn");
         client.get(getAbsoluteUrl(url), params, responseHandler);
     }
 
     public static void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        System.out.println(url);
         client.setTimeout(CONNECTION_TIMEOUT_INT);
         client.addHeader("Referer", "http://sina.com.cn");
         client.post(getAbsoluteUrl(url), params, responseHandler);

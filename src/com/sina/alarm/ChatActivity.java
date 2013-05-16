@@ -173,8 +173,10 @@ public class ChatActivity extends Activity {
                     Map<String, String> m;
                     for (Iterator<Map<String, String>> it = jArray.iterator(); it.hasNext(); ) {
                         m = it.next();
-                        data.addLast(m);
-                        UserModel.setSessionMsgFirstId(Integer.parseInt(m.get("id")));
+                        if(!data.contains(m)){
+                            data.addLast(m);
+                            UserModel.setSessionMsgFirstId(Integer.parseInt(m.get("id")));
+                        }
                     }
 
                 } else {
@@ -244,11 +246,9 @@ public class ChatActivity extends Activity {
     }
 
     public static void resetListView() {
-        data.removeAll(data);
+        //data.removeAll(data);
         UserModel.session_msg_first_id = 0;
-        adapter.notifyDataSetChanged();
         ChatActivity.loadData();
-
     }
 
     protected void onDestroy() {

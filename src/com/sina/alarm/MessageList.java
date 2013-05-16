@@ -100,9 +100,7 @@ public class MessageList extends Activity {
     }
 
     public static void resetListView() {
-        data.removeAll(data);
         UserModel.msg_first_id = 0;
-        adapter.notifyDataSetChanged();
         MessageList.loadData();
 
     }
@@ -121,8 +119,11 @@ public class MessageList extends Activity {
                     Map<String, String> m;
                     for (Iterator<Map<String, String>> it = jArray.iterator(); it.hasNext(); ) {
                         m = it.next();
-                        data.addLast(m);
-                        UserModel.setMsgFirstId(Integer.parseInt(m.get("id")));
+                        if(!data.contains(m)){
+                            data.addLast(m);
+                            UserModel.setMsgFirstId(Integer.parseInt(m.get("id")));
+                        }
+
                     }
 
                 } else {
