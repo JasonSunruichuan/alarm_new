@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="fill_parent" >
+
+    <com.sina.alarm.ChatListView
+        android:id="@+id/listView_chat_session"
+            android:layout_width="fill_parent"
+        android:layout_weight="1"
+        android:background="#FFF"
+        android:divider="#00000000"
+     	android:dividerHeight="20dp"
+        android:layout_height="0dip" />
+               
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+              <EditText
+        android:id="@+id/editText_input"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+ 		android:layout_weight="1"
+        android:ems="10"
+        android:hint="just type"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
+
+              <Button
+                  android:id="@+id/button_send"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:onClick="postMsg"
+                  android:text="发送" />
+    
+    </LinearLayout>
+
+
+    
+</LinearLayout>

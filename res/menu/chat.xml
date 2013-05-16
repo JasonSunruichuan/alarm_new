@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/do_not_disturb"
+        android:orderInCategory="100"
+        android:title="@string/do_not_disturb"
+        android:showAsAction="ifRoom"/>
+    <item android:id="@+id/logout"
+        android:title="@string/logout"
+        android:showAsAction="ifRoom"/>
+
+</menu>

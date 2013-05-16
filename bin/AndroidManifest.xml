@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sina.alarm"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+  <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- 可选权限 -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    
+    
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/alarm"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.sina.alarm.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 配置的第三方参数属性 -->
+        <meta-data
+            android:name="appid"
+            android:value="EvwdJydwId6ycNVYBRx5N9" />
+        <meta-data
+            android:name="appkey"
+            android:value="OlmhhFzNS19UC1oO6aWES3" />
+        <meta-data
+            android:name="appsecret"
+            android:value="8j0pdaJezE9074glEIiBY4" />
+
+        <receiver android:name="com.sina.alarm.AlarmMsgReceiver" >
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.EvwdJydwId6ycNVYBRx5N9" />
+            </intent-filter>
+        </receiver>        
+        
+        <activity
+            android:name="com.igexin.sdk.GexinSdkActivity"
+            android:excludeFromRecents="true"
+            android:process="com.sina.alarm.pushservice"
+            android:taskAffinity="android.task.GexinSdkActivityTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <intent-filter>
+                <action android:name="com.igexin.action.popupact.com.sina.alarm" />
+                <!-- com.igexin.action.popupact.第三方的包名 -->
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="com.igexin.sdk.aidl.GexinMsgService"
+            android:label="NotificationCenterAIDL"
+            android:process="com.sina.alarm.pushservice" >
+            <intent-filter>
+                <action android:name="com.igexin.sdk.aidl.action.com.sina.alarm" />
+                <!-- com.igexin.sdk.aidl.action.第三方的包名 -->
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.igexin.sdk.GexinMainService"
+            android:label="NotificationCenter"
+            android:process="com.sina.alarm.pushservice" >
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.com.sina.alarm" />
+                <!-- com.igexin.sdk.action.第三方的包名 -->
+            </intent-filter>
+        </service>
+
+        <receiver android:name="com.igexin.sdk.GexinSdkReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" /> <!-- apn action -->
+                <action android:name="android.intent.action.USER_PRESENT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- ================================下载器模块================================= -->
+        <service
+            android:name="sdk.download.DownloadService"
+            android:process="com.sina.alarm.pushservice" />
+
+        <receiver
+            android:name="sdk.download.DownloadReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="sdk.download.DownloadProvider"
+            android:authorities="sdk.download.com.sina.alarm"
+            android:process="com.sina.alarm.pushservice" />
+        <!-- android:authorities="sdk.download.第三方包名" -->
+        <!-- =========================================================================== -->
+        <activity
+            android:name="com.sina.alarm.MessageList"
+            android:label="@string/title_activity_message_list" >
+        </activity>
+        <activity
+            android:name="com.sina.alarm.ChatActivity"
+             android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/title_activity_chat" >
+        </activity>
+    </application>
+
+
+
+</manifest>
